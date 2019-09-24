@@ -99,6 +99,16 @@
 			$this->load->view('templates/client_footer', $data);
 		}
 
+		public function registration() {
+
+			$data['judul'] = "Daftar Akun";
+			$data['about'] = $this->db->get('tb_about')->result_array();
+
+			$this->load->view('templates/client_header', $data);
+			$this->load->view('client/registration', $data);
+			$this->load->view('templates/client_footer', $data);
+		}
+
 		// public function buyProduk($id) {
 
 		// 	$data['produk'] = $this->db->get_where('tb_produk', ['id' => $id])->row_array();

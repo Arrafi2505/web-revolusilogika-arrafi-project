@@ -2,8 +2,7 @@
 	<div class="container">
       <div class="row justify-content-center mt-150">
         <div class="col-md-5">
-          <h1 class="text-center">Sistem Login Sederhara</h1>
-          <p class="text-center"><i class="fas fa-lock"></i>Oleh : <a href="">Rudy Studio</a></p>
+          <h1 class="text-center">Login Member</h1>
 
           <div class="card mt-5">
             <div class="card-header">
@@ -23,7 +22,7 @@
                     <a class="small" href="forgot-password.html">Lupa Password?</a>
                   </div>
                   <div class="text-center">
-                    <a class="small" href="<?php echo base_url(); ?>auth/registration">Create an Account!</a>
+                    <a class="small" href="<?php echo base_url(); ?>client/registration">Buat akun!</a>
                   </div>
               </form>
             </div>
