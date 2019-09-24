@@ -27,6 +27,7 @@
 			$this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required|trim');
 			$this->form_validation->set_rules('harga', 'Harga', 'required|trim');
 			$this->form_validation->set_rules('penulis', 'Penulis', 'required|trim');
+			$this->form_validation->set_rules('diskon', 'Diskon', 'required|trim');
 
 
 			if($this->form_validation->run() == FALSE) {
@@ -45,6 +46,7 @@
 				$day = htmlspecialchars($this->input->post('day', true));
 				$month = htmlspecialchars($this->input->post('month', true));
 				$year = htmlspecialchars($this->input->post('year', true));
+				$diskon = htmlspecialchars($this->input->post('diskon', true));
 
 				$upload_image = $_FILES['gambar']['name'];
 
@@ -76,7 +78,8 @@
 					'deskripsi' => $deskripsi,
 					'harga' => $harga,
 					'gambar' => $file_image,
-					'penulis' => $penulis
+					'penulis' => $penulis,
+					'diskon' => $diskon
 				];
 
 				$this->db->insert('tb_produk', $data);
@@ -118,6 +121,7 @@
 			$this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required|trim');
 			$this->form_validation->set_rules('harga', 'Harga', 'required|trim');
 			$this->form_validation->set_rules('penulis', 'Penulis', 'required|trim');
+			$this->form_validation->set_rules('diskon', 'Diskon', 'required|trim');
 
 			if($this->form_validation->run() == FALSE) {
 
@@ -135,6 +139,7 @@
 			$year = htmlspecialchars($this->input->post('year', true));
 			$deskripsi = htmlspecialchars($this->input->post('deskripsi', true));
 			$penulis = htmlspecialchars($this->input->post('penulis', true));
+			$diskon = htmlspecialchars($this->input->post('diskon', true));
 
 			$upload_image = $_FILES['gambar']['name'];
 
@@ -168,6 +173,7 @@
 				$this->db->set('tanggal_terbit', $year.'-'.$month.'-'.$day);
 				$this->db->set('deskripsi', $deskripsi);
 				$this->db->set('penulis', $penulis);
+				$this->db->set('diskon', $diskon);
 				$this->db->where('id', $id);
 				$this->db->update('tb_produk');
 				$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">

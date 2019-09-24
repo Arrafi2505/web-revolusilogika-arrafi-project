@@ -31,6 +31,7 @@
 					      <th scope="col">Harga</th>
 					      <th scope="col">gambar</th>
 					      <th scope="col">Penulis</th>
+					      <th scope="col">Diskon</th>
 					      <th scope="col">Action</th>
 					    </tr>
 					  </thead>
@@ -45,6 +46,7 @@
 					      <td><?php echo $p['harga']; ?></td>
 					      <td><img src="<?php echo base_url(); ?>assets/img/upload/produk/<?php echo $p['gambar']; ?>" class="img-thumbnail" width="100"></td>
 					      <td><?php echo $p['penulis']; ?></td>
+					      <td><?php echo $p['diskon']; ?></td>
 					      <td>
 					      	<a href="<?php echo base_url(); ?>produk/edit/<?php echo $p['id']; ?>" class="badge badge-success">edit</a>
 					      	<a href="<?php echo base_url(); ?>produk/delete/<?php echo $p['id']; ?>" class="badge badge-danger">delete</a>
@@ -133,6 +135,10 @@
 					<div class="form-group">
 					    <label for="penulis">Penulis</label>
 					    <input type="text" class="form-control" id="penulis" name="penulis" placeholder="Input penulis">
+					  </div>
+					  <div class="form-group">
+					    <label for="diskon">Diskon</label>
+					    <input type="text" class="form-control" id="diskon" name="diskon" placeholder="Input diskon" value="0">
 					  </div>
 		      </div>
 		      <div class="modal-footer">

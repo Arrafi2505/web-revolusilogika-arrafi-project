@@ -88,6 +88,11 @@
 					    <input type="text" class="form-control" id="penulis" name="penulis" placeholder="Input penulis" value="<?php echo $produk['penulis']; ?>">
 					     <?php echo form_error('penulis', '<small class="text-danger pl-3">', '</small>'); ?>
 					  </div>
+					  <div class="form-group">
+					    <label for="diskon">Penulis</label>
+					    <input type="text" class="form-control" id="diskon" name="diskon" placeholder="Input diskon" value="<?php echo $produk['diskon']; ?>">
+					     <?php echo form_error('diskon', '<small class="text-danger pl-3">', '</small>'); ?>
+					  </div>
 					  <hr class="sidebar-divider mt-5">
 					  <button type="submit" class="btn btn-primary float-right">Change</button>
 					  <a href="<?php echo base_url(); ?>produk" class="btn btn-secondary float-right mr-2">Back</a>

@@ -14,7 +14,7 @@
                 <div class="col-sm-6 col-lg-4 col-xl-4">
                     <div class="single-home-blog">
                         <div class="card">
-                             <iframe width="100%" height="313" src="<?php echo $p['video_url']; ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                             <img src="<?php echo base_url(); ?>assets/img/upload/pengajian/img/<?php echo $p['feature_image']; ?>" class="img-thumbnail" alt="" height="313">
                             <div class="card-body">
                                 <a href="<?php echo base_url(); ?>client/detail_pengajian/<?php echo $p['id']; ?>">
                                     <h5 class="card-title"><?php echo $p['judul']; ?></h5>
