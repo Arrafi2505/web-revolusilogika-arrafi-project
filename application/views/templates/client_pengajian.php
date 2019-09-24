@@ -1,5 +1,5 @@
  <!--::blog_part start::-->
-    <section class="blog_part section_padding">
+    <section class="blog_part section_padding margin_top">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-5">

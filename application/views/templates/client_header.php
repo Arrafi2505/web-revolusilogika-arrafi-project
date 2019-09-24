@@ -29,6 +29,17 @@
             width : 100%;
             height : 500px;
         }
+        @media (min-width: 465px) and (max-width: 1200px) {
+            .margin_top {
+                margin-top: 100px;
+            }
+        }
+         @media (min-width: 465px) and (max-width: 1400px) {
+            .mt-150 {
+                margin-top: 150px;
+                margin-bottom : 150px;
+            }
+        }
     </style>
 </head>
 
@@ -65,7 +76,7 @@
                                     <a class="nav-link" href="<?php echo base_url(); ?>client/contac">Kontak</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link btn btn-primary float-right text-white" href="<?php echo base_url(); ?>client/contac">Login</a>
+                                    <a class="nav-link btn btn-primary float-right text-white" href="<?php echo base_url(); ?>client/formLogin">Login</a>
                                 </li>
                             </ul>
                         </div>

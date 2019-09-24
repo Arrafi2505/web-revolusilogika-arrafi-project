@@ -41,12 +41,13 @@
 			$data['judul'] = "Produk";
 			$data['produk'] = $this->db->get('tb_produk')->result_array();
 			$data['tesimonial'] = $this->db->get('tb_tesimonial')->result_array();
+			$data['about'] = $this->db->get('tb_about')->result_array();
 
 		    $this->load->view('templates/client_header', $data);
 			// $this->load->view('client/produk', $data);
 			$this->load->view('templates/client_produk', $data);
 			$this->load->view('templates/client_testimonial', $data);
-			$this->load->view('templates/client_footer');
+			$this->load->view('templates/client_footer', $data);
 		}
 
 		public function pengajian() {
@@ -82,9 +83,19 @@
 			$data['pengajians'] = $this->db->get('tb_pengajian')->result_array();
 			$data['tesimonial'] = $this->db->get('tb_tesimonial')->result_array();
 			$data['about'] = $this->db->get('tb_about')->result_array();
-
+			
 		    $this->load->view('templates/client_header', $data);
 			$this->load->view('client/contac', $data);
+			$this->load->view('templates/client_footer', $data);
+		}
+
+		public function formLogin() {
+
+			$data['judul'] = "Login Member";
+			$data['about'] = $this->db->get('tb_about')->result_array();
+
+			$this->load->view('templates/client_header', $data);
+			$this->load->view('client/login', $data);
 			$this->load->view('templates/client_footer', $data);
 		}
 

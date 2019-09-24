@@ -1,5 +1,5 @@
 <!-- ================ contact section start ================= -->
-  <section class="contact-section section_padding">
+  <section class="contact-section section_padding margin_top">
     <div class="container">
       <div class="d-none d-sm-block mb-5 pb-4">
         <div id="map" style="height: 480px;"></div>
