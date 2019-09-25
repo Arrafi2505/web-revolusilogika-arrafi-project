@@ -117,7 +117,7 @@
                                       </ul>
                                 <?php else : ?>
                                      <li class="nav-item" style="margin-left: 380px;">
-                                        <a class="nav-link btn_1 float-right text-white" href="<?php echo base_url(); ?>client/formLogin">Login</a>
+                                        <a class=" btn_1 float-right text-white" href="<?php echo base_url(); ?>client/formLogin">Login</a>
                                     </li>
                                 <?php endif; ?>
                             </ul>

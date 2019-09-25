@@ -278,6 +278,69 @@
 			}
 		}
 
+		public function changePassword() {
+
+			$data['judul'] = "Change Password";
+			$data['about'] = $this->db->get('tb_about')->result_array();
+			$data['user'] = $this->db->get_where('tb_member', ['email' => $this->session->userdata('email_member')])->row_array();
+
+			$this->form_validation->set_rules('currentPassword', 'Current Password', 'required|trim', [
+					'required' => 'Form ini tidak boleh kosong!',
+			]);
+			$this->form_validation->set_rules('newPassword1', 'New Password', 'required|trim|matches[newPassword2]|min_length[6]', [
+					'required' => 'Form ini tidak boleh kosong!',
+					'matches' => 'Confirm password tidak sesuai',
+					'min_length' => 'Password terlalu pendek'
+			]);
+			$this->form_validation->set_rules('newPassword2', 'Repeat Password', 'required|trim|matches[newPassword1]|min_length[6]', [
+					'required' => 'Form ini tidak boleh kosong!',
+					'matches' => 'Confirm password tidak sesuai',
+					'min_length' => 'Password terlalu pendek'
+			]);
+
+			if($this->form_validation->run() == FALSE) {
+
+				$this->load->view('templates/client_header', $data);
+				$this->load->view('client/change_password', $data);
+				$this->load->view('templates/client_footer',  $data);
+			}
+			else {
+
+				$currentPass = $this->input->post('currentPassword', true);
+				$newPass = $this->input->post('newPassword1', true);
+
+				if(!password_verify($currentPass, $data['user']['password'])) {
+
+					$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+						Current password salah!
+						</div>');
+					redirect('client/changePassword');
+				}
+				else {
+
+					if($newPass == $currentPass) {
+
+					$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+						Password baru tidak boleh sama dengan current password!
+						</div>');
+					redirect('client/changePassword');
+					}
+					else {
+
+						$password_hash = password_hash($newPass, PASSWORD_DEFAULT);
+
+						$this->db->set('password', $password_hash);
+						$this->db->where('email', $this->session->userdata('email'));
+						$this->db->update('tb_member');
+						$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+							Password berhasil diubah!
+							</div>');
+						redirect('client/changePassword');
+					}
+				}
+			}
+		}
+
 		public function logout() {
 
 			$this->session->unset_userdata('email_member');
@@ -287,27 +350,26 @@
 			redirect('client/formLogin');
 		}
 
-		// public function buyProduk($id) {
+		public function pesan($id) {
 
-		// 	$data['produk'] = $this->db->get_where('tb_produk', ['id' => $id])->row_array();
-		// 	$data['judul'] = $data['produk']['nama'].' - Membeli '.$data['produk']['nama'].' Harga Terjangkau';
+			$data['produk'] = $this->db->get_where('tb_produk', ['id' => $id])->row_array();
+			$data['judul'] = $data['produk']['nama'].' - Membeli '.$data['produk']['nama'].' Harga Terjangkau';
+			$data['about'] = $this->db->get('tb_about')->result_array();
 
-		// 	$this->form_validation->set_rules('nama', 'Nama', 'required');
-		// 	$this->form_validation->set_rules('rekening', 'Rekening', 'required');
+			$this->form_validation->set_rules('nama', 'Nama', 'required');
+			$this->form_validation->set_rules('rekening', 'Rekening', 'required');
 
-		// 	if($this->form_validation->run() == FALSE) {
+			if($this->form_validation->run() == FALSE) {
 
-		// 		$this->load->view('templates/client_header', $data);
-		// 		$this->load->view('client/beli_produk', $data);
-		// 		$this->load->view('templates/client_footer');
-		// 	}
-		// 	else {
+				$this->load->view('templates/client_header', $data);
+				$this->load->view('client/pesan_produk', $data);
+				$this->load->view('templates/client_footer', $data);
+			}
+			else {
+			
+			}
 
-		// 		$nama = htmlspecialchars($this->input->post('nama', true));
-		// 		$rekening = htmlspecialchars($this->input->post('rekening', true));				
-		// 	}
-
-		// }
+		}
 	}
 
  ?>

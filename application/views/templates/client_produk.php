@@ -16,7 +16,7 @@
                     <div class="single_special_cource">
                         <img src="<?php echo base_url(); ?>assets/img/upload/produk/<?php echo $p['gambar']; ?>" class="special_img" alt="" width="360" height="313">
                         <div class="special_cource_text">
-                            <a href="" class="btn_4">Beli</a>
+                            <a href="<?php echo base_url(); ?>client/pesan/<?php echo $p['id']; ?>" class="btn_4">Pesan</a>
                             <?php if($p['diskon'] > 0) : ?>                              
                               <?php 
                                     $harga = $p['harga'] * $p['diskon'] / 100;
