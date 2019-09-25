@@ -12,6 +12,14 @@
 			$data['tesimonial'] = $this->db->get('tb_tesimonial')->result_array();
 			$data['carousel'] = $this->db->get_where('tb_carrousel', ['visible' => 1])->result_array();
 			$data['about'] = $this->db->get('tb_about')->result_array();
+			if($this->session->userdata('email')) {
+
+				$data['user'] = $this->db->get_where('tb_member', ['email' => $this->session->userdata('email')])->row_array();
+			}
+			else {
+
+				$data['user'] = "pap";
+			}
 
 		    $this->load->view('templates/client_header', $data);
 			$this->load->view('client/index', $data);
@@ -91,10 +99,15 @@
 
 		public function formLogin() {
 
+			if($this->session->userdata('email_member')) {
+
+				redirect('client');
+			}
+
 			$data['judul'] = "Login Member";
 			$data['about'] = $this->db->get('tb_about')->result_array();
 
-			$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[tb_member.email]', [
+			$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email', [
 					'required' => 'Form ini tidak boleh kosong!',
 			]);
 			$this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[6]', [
@@ -118,12 +131,45 @@
 
 			$email = $this->input->post('email', true);
 			$password = $this->input->post('password', true);
+			$user = $this->db->get_where('tb_member', ['email' => $email])->row_array();
 
-			
+			if($user !=null) {
 
+				if($user['is_active'] == 1) {
+
+					if(password_verify($password, $user['password'])) {
+
+						$this->session->set_userdata(['email_member' => $email]);
+						redirect('client');
+					}
+					else {
+						$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+						  Wrong password!
+						</div>');
+						redirect('client/formLogin');
+					}
+				}
+				else {
+					$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+					  Your account is not activated!
+					</div>');
+				redirect('client/formLogin');
+				}
+			}
+			else {
+				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+					  Your account is not registered!
+					</div>');
+				redirect('client/formLogin');
+			}
 		}
 
 		public function registration() {
+
+			if($this->session->userdata('email_member')) {
+
+				redirect('client');
+			}
 
 			$data['judul'] = "Daftar Akun";
 			$data['about'] = $this->db->get('tb_about')->result_array();
@@ -172,6 +218,25 @@
 					</div>');
 				redirect('client/formLogin');
 			}
+		}
+
+		public function profile() {
+
+			$data['judul'] = "Profile";
+			$data['about'] = $this->db->get('tb_about')->result_array();
+
+			$this->load->view('templates/client_header', $data);
+			$this->load->view('client/profile');
+			$this->load->view('templates/client_footer', $data);
+		}
+
+		public function logout() {
+
+			$this->session->unset_userdata('email_member');
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+				Your account has been Logged out!
+				</div>');
+			redirect('client/formLogin');
 		}
 
 		// public function buyProduk($id) {

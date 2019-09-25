@@ -14,25 +14,45 @@
               	<?php if(form_error('email')) : ?>
                   <div class="form-group">
                   <label for="email">Email</label>
-                  <input type="text" class="form-control is-invalid" id="email" name="email" placeholder="Email" value="<?php echo set_value('email'); ?>">
+                  <div class="input-group">
+			        <div class="input-group-prepend">
+			          <div class="input-group-text"><i class="fa fa-fw fa-envelope"></i></div>
+			        </div>
+			        <input type="text" class="form-control is-invalid" id="email" name="email" placeholder="Email" value="<?php echo set_value('email'); ?>">
+			      </div>
                   <?php echo form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
                 <?php else : ?>
                   <div class="form-group">
                   <label for="email">Email</label>
-                  <input type="text" class="form-control" id="email" name="email" placeholder="Email" value="<?php echo set_value('email'); ?>">
+                  <div class="input-group">
+			        <div class="input-group-prepend">
+			          <div class="input-group-text"><i class="fa fa-fw fa-envelope"></i></div>
+			        </div>
+			        <input type="text" class="form-control" id="email" name="email" placeholder="Email">
+			      </div>
                 </div>
               <?php endif; ?>
                <?php if(form_error('password')) : ?>
                   <div class="form-group">
                   <label for="password">Password</label>
-                  <input type="password" class="form-control is-invalid" id="password" name="password" placeholder="Password">
+                  <div class="input-group">
+			        <div class="input-group-prepend">
+			          <div class="input-group-text"><i class="fa fa-fw fa-lock"></i></div>
+			        </div>
+			        <input type="password" class="form-control is-invalid" id="password" name="password" placeholder="Password">
+			      </div>
                   <?php echo form_error('password', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
                 <?php else : ?>
                   <div class="form-group">
                   <label for="password">Password</label>
-                  <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                  <div class="input-group">
+			        <div class="input-group-prepend">
+			          <div class="input-group-text"><i class="fa fa-fw fa-lock"></i></div>
+			        </div>
+			        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+			      </div>
                 </div>
               <?php endif; ?>
                 <button type="submit" name="submit" class="btn btn-primary btn-block">Login</button>

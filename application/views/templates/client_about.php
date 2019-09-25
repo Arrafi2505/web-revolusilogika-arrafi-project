@@ -1,7 +1,7 @@
 
 
     <!-- learning part start-->
-    <section class="learning_part">
+    <section class="learning_part margin_top">
         <div class="container">
             <div class="row align-items-sm-center align-items-lg-stretch">
                 <div class="col-md-7 col-lg-7">
