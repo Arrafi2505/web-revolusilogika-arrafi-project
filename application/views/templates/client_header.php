@@ -42,6 +42,11 @@
                 margin-bottom : 150px;
             }
         }
+         @media (min-width: 465px) and (max-width: 767px) {
+            .text_center_only {
+                text-align: center;
+            }
+        }
     </style>
 </head>
 
@@ -66,7 +71,7 @@
                                     <a class="nav-link" href="<?php echo base_url(); ?>client">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="<?php echo base_url(); ?>client/about">Tentang Kami</a>
+                                    <a class="nav-link" href="<?php echo base_url(); ?>client/about">About</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="<?php echo base_url(); ?>client/produk">Produk</a>
@@ -89,7 +94,7 @@
                                         <li class="nav-item dropdown no-arrow">
                                           <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $user['nama']; ?></span>
-                                            <img class="img-profile rounded-circle" src="<?php echo base_url(); ?>assets/img/<?php echo $user['gambar']; ?>" width="10%">
+                                            <img class="img-profile rounded-circle" src="<?php echo base_url(); ?>assets/img/upload/member/<?php echo $user['gambar']; ?>" width="10%">
                                           </a>
                                           <!-- Dropdown - User Information -->
                                           <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -112,7 +117,7 @@
                                       </ul>
                                 <?php else : ?>
                                      <li class="nav-item" style="margin-left: 380px;">
-                                        <a class="nav-link btn btn-primary float-right text-white" href="<?php echo base_url(); ?>client/formLogin">Login</a>
+                                        <a class="nav-link btn_1 float-right text-white" href="<?php echo base_url(); ?>client/formLogin">Login</a>
                                     </li>
                                 <?php endif; ?>
                             </ul>

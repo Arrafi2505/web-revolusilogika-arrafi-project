@@ -88,6 +88,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="<?php echo base_url(); ?>assets/client/js/waypoints.min.js"></script>
     <!-- custom js -->
     <script src="<?php echo base_url(); ?>assets/client/js/custom.js"></script>
+     <script>
+    $('.custom-file-input').on('change', function() {
+
+            let fileName = $(this).val().split('\\').pop();
+            $(this).next('.custom-file-label').addClass("selected").html(fileName);
+          });
+  </script>
 </body>
 
 </html>

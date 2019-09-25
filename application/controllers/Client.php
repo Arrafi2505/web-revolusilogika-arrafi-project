@@ -224,10 +224,58 @@
 
 			$data['judul'] = "Profile";
 			$data['about'] = $this->db->get('tb_about')->result_array();
+			$data['user'] = $this->db->get_where('tb_member', ['email' => $this->session->userdata('email_member')])->row_array();
 
-			$this->load->view('templates/client_header', $data);
-			$this->load->view('client/profile');
-			$this->load->view('templates/client_footer', $data);
+			$this->form_validation->set_rules('nama', 'Nama', 'required|trim', [
+					'required' => 'Form ini tidak boleh kosong!',
+			]);
+			$this->form_validation->set_rules('no_hp', 'Nomor HP', 'required|trim', [
+					'required' => 'Form ini tidak boleh kosong!',
+			]);
+
+			if($this->form_validation->run() == FALSE) {
+
+				$this->load->view('templates/client_header', $data);
+				$this->load->view('client/profile', $data);
+				$this->load->view('templates/client_footer', $data);
+			}
+			else {
+
+				$email = $this->input->post('email', true);
+				$nama = htmlspecialchars($this->input->post('nama', true));
+				$no_hp = $this->input->post('no_hp', true);
+
+				$upload_image = $_FILES['gambar']['name'];
+
+				if($upload_image) {
+
+					$config['upload_path'] = './assets/img/upload/member/';
+					$config['allowed_types'] = 'gif|jpg|jpeg|png|svg';
+					$config['max_size'] = '2048';
+
+					$this->load->library('upload', $config);
+
+					if($this->upload->do_upload('gambar')) {
+
+						$old_image = $data['user']['gambar'];
+						if($old_image != 'default.jpg') {
+
+							unlink(FCPATH.'assets/img/upload/member/'.$upload_image);
+						}
+						$file_image = $this->upload->data('file_name');
+						$this->db->set('gambar', $file_image);
+					}
+				}
+
+				$this->db->set('nama', $nama);
+				$this->db->set('no_hp', $no_hp);
+				$this->db->where('email', $email);
+				$this->db->update('tb_member');
+				$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+					  Update success!
+					</div>');
+				redirect('client/profile');
+			}
 		}
 
 		public function logout() {
